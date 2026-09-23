@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   DR Engineering & Manufacturing — design tokens
+   Boeing-inspired precision navy + aero blue system
+   ------------------------------------------------------------------ */
+@theme {
+  /* Surfaces */
+  --color-obsidian: #060b14;
+  --color-midnight: #0a1428;
+  --color-navy-950: #0b1b3d;
+  --color-navy-900: #002244;
+  --color-navy-800: #0a2a5c;
+
+  /* Brand */
+  --color-boeing: #0033a0;
+  --color-aero: #0066cc;
+  --color-aero-bright: #00a3e0;
+  --color-ping: #38bdf8;
+  --color-signal: #10b981;
+  --color-amber-signal: #cf7a17;
+
+  /* Neutrals */
+  --color-silver: #e2e8f0;
+  --color-slate-steel: #94a3b8;
+  --color-paper: #f4f7fb;
+
+  /* Type */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-grotesk), var(--font-inter), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Motion */
+  --animate-scan: scan 5s linear infinite;
+  --animate-spin-slow: spin 18s linear infinite;
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-blink: blink 1.2s steps(2, start) infinite;
+
+  @keyframes scan {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes blink {
+    to {
+      visibility: hidden;
+    }
+  }
+}
+
+/* Blueprint grid backgrounds */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(56 189 248 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(56 189 248 / 0.07) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+@utility bg-grid-fine {
+  background-image:
+    linear-gradient(to right, rgb(148 163 184 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(148 163 184 / 0.06) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+@utility bg-grid-light {
+  background-image:
+    linear-gradient(to right, rgb(0 51 160 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(0 51 160 / 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+@utility mask-fade-y {
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+}
+
+@utility mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+@utility mask-radial {
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+/* Base */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+  background: var(--color-obsidian);
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-obsidian);
+  color: var(--color-silver);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgb(0 102 204 / 0.55);
+  color: white;
+}
+
+/* Range input — HUD style */
+input[type="range"].hud-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 28px;
+  background: transparent;
+  cursor: pointer;
+}
+input[type="range"].hud-range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--color-ping) 0%,
+    var(--color-ping) var(--fill, 50%),
+    rgb(148 163 184 / 0.2) var(--fill, 50%)
+  );
+}
+input[type="range"].hud-range::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: rgb(148 163 184 / 0.2);
+}
+input[type="range"].hud-range::-moz-range-progress {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--color-ping);
+}
+input[type="range"].hud-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  margin-top: -7px;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #fff;
+  border: 3px solid var(--color-aero);
+  box-shadow: 0 0 0 4px rgb(56 189 248 / 0.18), 0 0 18px rgb(56 189 248 / 0.6);
+  transition: transform 150ms ease;
+}
+input[type="range"].hud-range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #fff;
+  border: 3px solid var(--color-aero);
+  box-shadow: 0 0 0 4px rgb(56 189 248 / 0.18), 0 0 18px rgb(56 189 248 / 0.6);
+}
+input[type="range"].hud-range:active::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+input[type="range"].hud-range:focus-visible {
+  outline: none;
+}
+input[type="range"].hud-range:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 6px rgb(56 189 248 / 0.35), 0 0 18px rgb(56 189 248 / 0.6);
+}
+
+/* Thin HUD scrollbar for drawers */
+.hud-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(56 189 248 / 0.3) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
