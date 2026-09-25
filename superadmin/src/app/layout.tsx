@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Daniels Superadmin — Product Catalog & Cloudinary Media Hub",
-  description: "Enterprise catalog management system with direct Cloudinary uploads and .NET backend APIs",
+  title: "DR Engineering & Manufacturing — Admin",
+  description: "Products management portal for DR Engineering & Manufacturing",
 };
 
 export default function RootLayout({
@@ -28,7 +28,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#060b14] text-slate-100 selection:bg-sky-500/30 selection:text-white">
+      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 selection:bg-blue-600 selection:text-white">
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>

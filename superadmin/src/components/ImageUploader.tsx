@@ -167,8 +167,8 @@ export default function ImageUploader({ imageUrls, onChange, onOpenCloudinarySet
         }}
         className={`group relative flex flex-col items-center justify-center rounded-xl border-2 border-dashed p-6 text-center cursor-pointer transition-all ${
           isUploading
-            ? 'border-sky-500 bg-sky-950/20'
-            : 'border-slate-700 bg-slate-800/40 hover:border-sky-500/80 hover:bg-slate-800/70'
+            ? 'border-blue-500 bg-blue-50/50'
+            : 'border-gray-300 bg-gray-50/50 hover:border-blue-500 hover:bg-gray-50'
         }`}
       >
         <input
@@ -182,37 +182,37 @@ export default function ImageUploader({ imageUrls, onChange, onOpenCloudinarySet
 
         {isUploading ? (
           <div className="flex flex-col items-center gap-2">
-            <Loader2 className="h-8 w-8 animate-spin text-sky-400" />
-            <p className="text-sm font-medium text-white">Uploading to Cloudinary...</p>
-            <div className="w-48 bg-slate-700 rounded-full h-1.5 overflow-hidden mt-1">
+            <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+            <p className="text-sm font-medium text-gray-900">Uploading to Cloudinary...</p>
+            <div className="w-48 bg-gray-200 rounded-full h-1.5 overflow-hidden mt-1">
               <div
-                className="bg-sky-400 h-full transition-all duration-150"
+                className="bg-blue-600 h-full transition-all duration-150"
                 style={{ width: `${uploadProgress}%` }}
               />
             </div>
-            <p className="text-xs text-slate-400">{uploadProgress}%</p>
+            <p className="text-xs text-gray-500">{uploadProgress}%</p>
           </div>
         ) : (
           <div className="flex flex-col items-center gap-1.5">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-500/10 text-sky-400 group-hover:bg-sky-500/20 group-hover:scale-110 transition-all border border-sky-500/20">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 group-hover:scale-110 transition-all border border-blue-100">
               <Upload className="h-5 w-5" />
             </div>
-            <p className="text-sm font-medium text-white mt-1">
-              Click or drag images here to upload to Cloudinary
+            <p className="text-sm font-medium text-gray-900 mt-1">
+              Click or drag images here to upload
             </p>
-            <p className="text-xs text-slate-400">Supports PNG, JPG, WebP, GIF (multiple images supported)</p>
+            <p className="text-xs text-gray-500">Supports PNG, JPG, WebP (multiple images supported)</p>
           </div>
         )}
       </div>
 
       {/* Error message */}
       {errorMessage && (
-        <div className="rounded-lg border border-rose-500/30 bg-rose-950/40 p-3 text-xs text-rose-300 flex items-start gap-2">
-          <AlertCircle className="h-4 w-4 shrink-0 text-rose-400 mt-0.5" />
+        <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-xs text-red-600 flex items-start gap-2">
+          <AlertCircle className="h-4 w-4 shrink-0 text-red-500 mt-0.5" />
           <div className="flex-1">
             <p>{errorMessage}</p>
           </div>
-          <button onClick={() => setErrorMessage(null)} className="text-rose-400 hover:text-white">
+          <button onClick={() => setErrorMessage(null)} className="text-red-500 hover:text-red-800">
             <X className="h-3.5 w-3.5" />
           </button>
         </div>
@@ -223,21 +223,21 @@ export default function ImageUploader({ imageUrls, onChange, onOpenCloudinarySet
         <button
           type="button"
           onClick={() => setShowUrlInput(!showUrlInput)}
-          className="inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors"
+          className="inline-flex items-center gap-1.5 text-gray-600 hover:text-gray-900 transition-colors"
         >
-          <LinkIcon className="h-3.5 w-3.5 text-sky-400" />
+          <LinkIcon className="h-3.5 w-3.5 text-blue-600" />
           {showUrlInput ? 'Hide URL input' : 'Paste Direct Image URL'}
         </button>
 
-        <div className="flex items-center gap-1 text-slate-400">
-          <Sparkles className="h-3.5 w-3.5 text-amber-400" />
+        <div className="flex items-center gap-1 text-gray-500">
+          <Sparkles className="h-3.5 w-3.5 text-amber-500" />
           <span className="text-[11px]">Quick samples:</span>
           {PRESET_SAMPLE_IMAGES.slice(0, 3).map((sample, i) => (
             <button
               key={i}
               type="button"
               onClick={() => handleAddPreset(sample.url)}
-              className="rounded bg-slate-800 px-2 py-0.5 text-[10px] text-slate-300 hover:bg-slate-700 hover:text-white transition-colors"
+              className="rounded bg-gray-100 px-2 py-0.5 text-[10px] text-gray-700 hover:bg-gray-200 transition-colors"
             >
               +{sample.name}
             </button>
@@ -253,11 +253,11 @@ export default function ImageUploader({ imageUrls, onChange, onOpenCloudinarySet
             value={urlInput}
             onChange={(e) => setUrlInput(e.target.value)}
             placeholder="https://example.com/product-image.jpg"
-            className="flex-1 rounded-lg border border-slate-700 bg-slate-800/80 px-3 py-2 text-xs text-white placeholder-slate-500 focus:border-sky-500 focus:outline-none"
+            className="flex-1 rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none"
           />
           <button
             type="submit"
-            className="rounded-lg bg-sky-600 px-3.5 py-2 text-xs font-semibold text-white hover:bg-sky-500 transition-colors"
+            className="rounded-lg bg-blue-600 px-3.5 py-2 text-xs font-semibold text-white hover:bg-blue-700 transition-colors shadow-sm"
           >
             Add Image
           </button>
@@ -270,7 +270,7 @@ export default function ImageUploader({ imageUrls, onChange, onOpenCloudinarySet
           {imageUrls.map((url, index) => (
             <div
               key={index}
-              className="group relative rounded-xl border border-slate-700 bg-slate-800/60 overflow-hidden shadow-md aspect-square flex flex-col justify-between"
+              className="group relative rounded-xl border border-gray-200 bg-gray-50 overflow-hidden shadow-sm aspect-square flex flex-col justify-between"
             >
               <img
                 src={url}

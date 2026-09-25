@@ -51,7 +51,7 @@ export function WorkExplorer() {
           <SectionHeading
             tone="light"
             index="02"
-            eyebrow="Selected work"
+            eyebrow="Recent builds"
             title={
               <>
                 Parts that leave the screen <span className="text-aero">and work in the real world.</span>
@@ -59,6 +59,54 @@ export function WorkExplorer() {
             }
             description="A cross-section of recent builds — automotive fitments, shop tooling, prototypes and custom pieces. Open any part for its build sheet."
           />
+
+          {/* Main Showcase Introduction Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 80, damping: 20 }}
+            className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl shadow-slate-200/60"
+          >
+            <div className="grid lg:grid-cols-[1.3fr_1fr]">
+              <div className="relative min-h-[340px] sm:min-h-[420px] overflow-hidden bg-slate-100">
+                <Image
+                  src="/products/dr-showcase-hero.jpg"
+                  alt="Manufactured parts by DR Engineering & Manufacturing"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                  className="object-cover transition-transform duration-700 hover:scale-105"
+                />
+                <div className="absolute bottom-4 left-4 rounded-xl border border-white/20 bg-black/60 px-3.5 py-1.5 backdrop-blur-md">
+                  <span className="font-mono text-xs font-semibold text-white">Made by DR Engineering &amp; Manufacturing</span>
+                </div>
+              </div>
+              <div className="flex flex-col justify-center p-6 sm:p-10 lg:p-12">
+                <p className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.24em] text-aero">
+                  <span className="h-2 w-2 rounded-full bg-aero animate-pulse" />
+                  Workshop Showcase
+                </p>
+                <h3 className="mt-3 font-display text-2xl font-bold tracking-tight text-navy-950 sm:text-3xl lg:text-4xl">
+                  Real parts engineered, printed &amp; manufactured in-house.
+                </h3>
+                <p className="mt-4 text-sm sm:text-base leading-relaxed text-slate-600">
+                  A cross-section of actual physical production parts and assemblies crafted in our workshop — including precision mounting brackets, functional drill jigs, multi-stage gear demonstrators, and custom relief emblems.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 font-mono text-[11px] text-slate-700">
+                    3D CAD &amp; Reverse Eng.
+                  </span>
+                  <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 font-mono text-[11px] text-slate-700">
+                    PET-CF · ASA · PETG · PLA
+                  </span>
+                  <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 font-mono text-[11px] text-slate-700">
+                    Finished Assemblies
+                  </span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
           <div className="-mx-4 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0">
             <div role="tablist" aria-label="Filter work" className="flex w-max gap-1 rounded-full border border-slate-200 bg-white p-1 shadow-sm">
               {productCategories.map((c) => {

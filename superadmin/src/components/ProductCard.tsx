@@ -53,9 +53,9 @@ export default function ProductCard({ product, onEdit, onDelete }: Props) {
   }).format(product.price);
 
   return (
-    <div className="group flex flex-col rounded-2xl border border-slate-800 bg-slate-900/90 hover:border-slate-700 shadow-xl overflow-hidden transition-all duration-200 hover:-translate-y-1">
+    <div className="group flex flex-col rounded-xl border border-slate-200 bg-white hover:border-slate-300 shadow-sm overflow-hidden transition-all duration-200 hover:-translate-y-0.5">
       {/* Image Showcase */}
-      <div className="relative aspect-[16/10] w-full bg-slate-950 overflow-hidden">
+      <div className="relative aspect-[16/10] w-full bg-slate-100 overflow-hidden">
         <img
           src={currentImage}
           alt={product.name}
@@ -66,12 +66,9 @@ export default function ProductCard({ product, onEdit, onDelete }: Props) {
           }}
         />
 
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20" />
-
         {/* Price Badge */}
         <div className="absolute top-3 right-3 z-10">
-          <span className="inline-flex items-center rounded-xl bg-slate-900/90 backdrop-blur-md border border-slate-700/80 px-3 py-1 text-sm font-bold text-white shadow-lg font-mono">
+          <span className="inline-flex items-center rounded-lg bg-white/95 backdrop-blur-md border border-slate-200 px-2.5 py-1 text-xs font-bold text-slate-900 shadow-sm font-mono">
             {formattedPrice}
           </span>
         </div>
@@ -125,13 +122,13 @@ export default function ProductCard({ product, onEdit, onDelete }: Props) {
       <div className="flex flex-1 flex-col p-5">
         <div className="flex-1">
           <div className="flex items-start justify-between gap-2">
-            <h3 className="text-base font-semibold text-white leading-snug line-clamp-1 group-hover:text-sky-300 transition-colors">
+            <h3 className="text-base font-semibold text-slate-900 leading-snug line-clamp-1 group-hover:text-blue-600 transition-colors">
               {product.name}
             </h3>
           </div>
 
-          <p className="mt-1.5 text-xs text-slate-400 line-clamp-2 leading-relaxed">
-            {product.description || 'No technical description provided.'}
+          <p className="mt-1.5 text-xs text-slate-500 line-clamp-2 leading-relaxed">
+            {product.description || 'No description provided.'}
           </p>
 
           {/* Tags */}
@@ -140,16 +137,16 @@ export default function ProductCard({ product, onEdit, onDelete }: Props) {
               product.tags.slice(0, 4).map((tag, i) => (
                 <span
                   key={i}
-                  className="inline-flex items-center rounded-md bg-slate-800 border border-slate-700/80 px-2 py-0.5 text-[11px] font-medium text-slate-300"
+                  className="inline-flex items-center rounded-md bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-600"
                 >
                   #{tag}
                 </span>
               ))
             ) : (
-              <span className="text-[11px] text-slate-500 italic">No tags</span>
+              <span className="text-[11px] text-slate-400 italic">No tags</span>
             )}
             {product.tags && product.tags.length > 4 && (
-              <span className="inline-flex items-center rounded-md bg-slate-800/60 px-1.5 py-0.5 text-[10px] text-slate-400">
+              <span className="inline-flex items-center rounded-md bg-slate-100 px-1.5 py-0.5 text-[10px] text-slate-500">
                 +{product.tags.length - 4}
               </span>
             )}
@@ -157,27 +154,27 @@ export default function ProductCard({ product, onEdit, onDelete }: Props) {
         </div>
 
         {/* Footer info & Actions */}
-        <div className="mt-5 pt-3.5 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+        <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
           <button
             onClick={copyId}
-            className="inline-flex items-center gap-1 font-mono text-[11px] text-slate-500 hover:text-slate-300 transition-colors"
+            className="inline-flex items-center gap-1 font-mono text-[11px] text-slate-400 hover:text-slate-600 transition-colors"
             title="Click to copy ID"
           >
-            {copiedId ? <Check className="h-3 w-3 text-emerald-400" /> : <Copy className="h-3 w-3" />}
+            {copiedId ? <Check className="h-3 w-3 text-emerald-600" /> : <Copy className="h-3 w-3" />}
             <span>{product.id.slice(0, 8)}...</span>
           </button>
 
           <div className="flex items-center gap-1.5">
             <button
               onClick={() => onEdit(product)}
-              className="inline-flex items-center gap-1 rounded-lg border border-slate-700 bg-slate-800/80 px-2.5 py-1 text-xs font-medium text-slate-200 hover:border-sky-500/50 hover:bg-sky-500/10 hover:text-sky-300 transition-colors"
+              className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-700 hover:bg-slate-50 transition-colors shadow-sm"
             >
               <Pencil className="h-3 w-3" />
               Edit
             </button>
             <button
               onClick={() => onDelete(product)}
-              className="inline-flex items-center gap-1 rounded-lg border border-slate-700 bg-slate-800/80 px-2.5 py-1 text-xs font-medium text-rose-400 hover:border-rose-500/50 hover:bg-rose-500/10 hover:text-rose-300 transition-colors"
+              className="inline-flex items-center gap-1 rounded-lg border border-red-200 bg-white px-2.5 py-1 text-xs font-medium text-red-600 hover:bg-red-50 transition-colors shadow-sm"
             >
               <Trash2 className="h-3 w-3" />
             </button>

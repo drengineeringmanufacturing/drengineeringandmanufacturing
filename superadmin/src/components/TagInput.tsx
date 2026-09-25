@@ -12,16 +12,15 @@ interface Props {
 const DEFAULT_SUGGESTIONS = [
   'Aerospace',
   'CNC',
-  'Titanium',
-  'Turbines',
-  'Composites',
-  'Actuators',
-  'Avionics',
-  'Hydraulics',
-  'Precision',
-  'Valves',
-  'Propulsion',
-  'Defense',
+  '3D Printing',
+  'Prototypes',
+  'PET-CF',
+  'ASA',
+  'PETG',
+  'PLA',
+  'Tooling',
+  'Jigs',
+  'Custom',
 ];
 
 export default function TagInput({ tags, onChange, suggestions = DEFAULT_SUGGESTIONS }: Props) {
@@ -54,25 +53,25 @@ export default function TagInput({ tags, onChange, suggestions = DEFAULT_SUGGEST
   );
 
   return (
-    <div className="space-y-2">
-      <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+    <div className="space-y-1.5">
+      <label className="block text-xs font-medium text-gray-700">
         Product Tags ({tags.length})
       </label>
 
       {/* Input container with chips */}
-      <div className="flex flex-wrap items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-800/80 p-2.5 focus-within:border-sky-500 focus-within:ring-1 focus-within:ring-sky-500 transition-all">
-        <TagIcon className="h-4 w-4 text-slate-500 ml-1 shrink-0" />
+      <div className="flex flex-wrap items-center gap-1.5 rounded-lg border border-gray-300 bg-white p-2 focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition-all">
+        <TagIcon className="h-4 w-4 text-gray-400 ml-1 shrink-0" />
 
         {tags.map((tag, index) => (
           <span
             key={index}
-            className="inline-flex items-center gap-1 rounded-lg bg-sky-500/15 border border-sky-500/30 px-2.5 py-1 text-xs font-medium text-sky-300"
+            className="inline-flex items-center gap-1 rounded-md bg-blue-50 border border-blue-200 px-2 py-0.5 text-xs font-medium text-blue-700"
           >
             #{tag}
             <button
               type="button"
               onClick={() => removeTag(index)}
-              className="text-sky-400/80 hover:text-white transition-colors ml-0.5"
+              className="text-blue-500 hover:text-blue-800 transition-colors ml-0.5"
             >
               <X className="h-3 w-3" />
             </button>
@@ -85,23 +84,23 @@ export default function TagInput({ tags, onChange, suggestions = DEFAULT_SUGGEST
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
           onBlur={() => addTag(inputValue)}
-          placeholder={tags.length === 0 ? 'Type tag and press Enter (e.g. Aerospace, CNC)...' : 'Add tag...'}
-          className="flex-1 min-w-[140px] bg-transparent text-xs text-white placeholder-slate-500 focus:outline-none px-1 py-1"
+          placeholder={tags.length === 0 ? 'Type tag and press Enter...' : 'Add tag...'}
+          className="flex-1 min-w-[140px] bg-transparent text-xs text-gray-900 placeholder-gray-400 focus:outline-none px-1 py-1"
         />
       </div>
 
       {/* Quick suggestions */}
       {unusedSuggestions.length > 0 && (
-        <div className="flex flex-wrap items-center gap-1 text-slate-400 pt-1">
+        <div className="flex flex-wrap items-center gap-1 text-gray-500 pt-1">
           <span className="text-[11px]">Suggestions:</span>
           {unusedSuggestions.slice(0, 6).map((item, i) => (
             <button
               key={i}
               type="button"
               onClick={() => addTag(item)}
-              className="inline-flex items-center gap-0.5 rounded-md bg-slate-800 px-2 py-0.5 text-[10px] text-slate-300 hover:bg-slate-700 hover:text-white transition-colors"
+              className="inline-flex items-center gap-0.5 rounded bg-gray-100 px-2 py-0.5 text-[11px] text-gray-700 hover:bg-gray-200 transition-colors"
             >
-              <Plus className="h-2.5 w-2.5 text-slate-400" />
+              <Plus className="h-2.5 w-2.5 text-gray-400" />
               {item}
             </button>
           ))}
