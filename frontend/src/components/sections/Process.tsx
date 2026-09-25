@@ -18,7 +18,7 @@ export function Process() {
         <div className="lg:sticky lg:top-32 lg:self-start">
           <SectionHeading
             tone="light"
-            index="04"
+            index="03"
             eyebrow="How we work"
             title={
               <>

@@ -5,7 +5,6 @@ import { Capabilities } from "@/components/sections/Capabilities";
 import { Contact } from "@/components/sections/Contact";
 import { Hero } from "@/components/sections/Hero";
 import { Materials } from "@/components/sections/Materials";
-import { ParameterLab } from "@/components/sections/ParameterLab";
 import { Process } from "@/components/sections/Process";
 import { StatsBand } from "@/components/sections/StatsBand";
 import { WorkExplorer } from "@/components/sections/WorkExplorer";
@@ -20,7 +19,6 @@ export default function Home() {
         <StatsBand />
         <Capabilities />
         <WorkExplorer />
-        <ParameterLab />
         <Process />
         <Materials />
         <Contact />

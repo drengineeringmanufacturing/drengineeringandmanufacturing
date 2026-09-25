@@ -16,7 +16,7 @@ export function Materials() {
       <div aria-hidden className="absolute inset-0 bg-grid opacity-30 mask-fade-y" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          index="05"
+          index="04"
           eyebrow="Material library"
           title={
             <>
