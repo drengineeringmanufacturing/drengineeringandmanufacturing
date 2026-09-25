@@ -12,7 +12,12 @@ export interface AuthUser {
 export async function authenticateRequest(request: Request): Promise<{ user: AuthUser | null; error: string | null }> {
   const authHeader = request.headers.get('Authorization') || request.headers.get('authorization');
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+  const supabaseAnonKey =
+    (process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY && !process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY.endsWith('...'))
+      ? process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+      : (process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY && !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY.endsWith('...'))
+      ? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+      : '';
 
   // If Supabase is configured, verify the real token
   if (supabaseUrl && supabaseAnonKey && !supabaseUrl.includes('[YOUR-PROJECT-REF]')) {

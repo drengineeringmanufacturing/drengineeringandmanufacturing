@@ -1,10 +1,15 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 export function getStoredSupabaseConfig() {
+  const defaultKey =
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    '';
+
   if (typeof window === 'undefined') {
     return {
       url: process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-      anonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '',
+      anonKey: defaultKey,
     };
   }
 
@@ -13,7 +18,7 @@ export function getStoredSupabaseConfig() {
 
   return {
     url: storedUrl || process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-    anonKey: storedKey || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '',
+    anonKey: storedKey || defaultKey,
   };
 }
 
