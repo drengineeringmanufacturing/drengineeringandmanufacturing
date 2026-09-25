@@ -113,7 +113,7 @@ export const services: Service[] = [
     ],
     specs: [
       { label: "Layer height", value: "0.08 – 0.28 mm" },
-      { label: "Materials", value: "PLA · PETG · ABS · ASA · TPU · PA-CF" },
+      { label: "Materials", value: "PLA · PETG · ABS · ASA · TPU · PET-CF" },
       { label: "Batch sizes", value: "1 – 1,000+ units" },
     ],
   },

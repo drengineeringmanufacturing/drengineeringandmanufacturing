@@ -16,7 +16,7 @@ export const site = {
   },
   socials: {
     linkedin: "https://www.linkedin.com/company/dr-engineering-manufacturing/",
-    instagram: "https://www.instagram.com/drengineeringandmanufacturing?stkn=czA0dTJob3RwbWV3&utm_source=ig_contact_invite",
+    instagram: "https://www.instagram.com/drengineeringandmanufacturing",
   },
   aboutStory: {
     title: "About DR Engineering & Manufacturing",

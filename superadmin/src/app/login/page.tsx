@@ -103,29 +103,16 @@ export default function LoginPage() {
             D
           </div>
           <h2 className="mt-4 text-2xl font-bold tracking-tight text-white">
-            Daniels Superadmin Portal
+            DR Engineering &amp; Manufacturing
           </h2>
           <p className="mt-1.5 text-xs text-slate-400">
-            Secure Authentication powered by Supabase & .NET 10
+            Superadmin Management Portal
           </p>
         </div>
 
         {/* Auth Card */}
         <div className="mt-8 rounded-2xl border border-slate-800 bg-slate-900/90 p-7 shadow-2xl backdrop-blur-xl">
-          {/* Supabase status indicator */}
-          <div className="mb-5 flex items-center justify-between rounded-xl border border-slate-800 bg-slate-950/60 px-3.5 py-2 text-xs">
-            <div className="flex items-center gap-2">
-              <Database className="h-3.5 w-3.5 text-emerald-400" />
-              <span className="text-slate-300 font-medium">Supabase Auth</span>
-            </div>
-            <button
-              type="button"
-              onClick={() => setShowConfigModal(true)}
-              className="text-[11px] font-mono text-sky-400 hover:text-sky-300 hover:underline"
-            >
-              {isConfigured ? 'Connected' : 'Setup Project'}
-            </button>
-          </div>
+
 
           {errorMessage && (
             <div className="mb-4 rounded-xl border border-rose-500/30 bg-rose-950/40 p-3.5 text-xs text-rose-300 flex items-start gap-2">
@@ -236,7 +223,7 @@ export default function LoginPage() {
         {/* Security Notice */}
         <div className="mt-6 flex items-center justify-center gap-2 text-xs text-slate-500">
           <ShieldCheck className="h-4 w-4 text-emerald-500/80" />
-          <span>Protected with cryptographic JWT verification on .NET Web API</span>
+          <span>Encrypted Superadmin Access</span>
         </div>
       </div>
 

@@ -41,10 +41,8 @@ export const products: Product[] = [
       "Custom-fit dashboard pod housing three 52 mm gauges. Reverse engineered from the dash contour so it sits flush with factory panels.",
     process: ["Reverse Engineering", "3D CAD", "3D Printing", "Post Processing"],
     specs: [
-      { label: "Material", value: "ASA — UV stable" },
-      { label: "Finish", value: "Textured satin black" },
-      { label: "Fitment", value: "Contour-matched to dash" },
-      { label: "Lead time", value: "5 working days" },
+      { label: "Material", value: "ASA (UV Stable)" },
+      { label: "Process", value: "Reverse Engineering, 3D CAD & 3D Printing" },
     ],
   },
   {
@@ -58,10 +56,8 @@ export const products: Product[] = [
       "Clamp-on jig that locates the lock barrel and cam holes for fast, repeatable cabinet lock installs — with hardened guide bushings.",
     process: ["3D CAD", "3D Printing", "Post Processing"],
     specs: [
-      { label: "Material", value: "PETG + steel bushings" },
-      { label: "Accuracy", value: "±0.1 mm hole location" },
-      { label: "Use", value: "Joinery & shop fit-out" },
-      { label: "Lead time", value: "3 working days" },
+      { label: "Material", value: "PETG + Hardened Bushings" },
+      { label: "Process", value: "3D CAD, FDM Printing & Assembly" },
     ],
   },
   {
@@ -75,10 +71,8 @@ export const products: Product[] = [
       "Parametric bracket with bored pivot boss and clevis mount, delivered with a full drawing pack — ready for FDM, CNC or moulding.",
     process: ["3D CAD", "Technical Drawings"],
     specs: [
-      { label: "Deliverable", value: "STEP + drawing pack" },
-      { label: "Tolerancing", value: "GD&T on bore & mount" },
-      { label: "Revision", value: "REV C" },
-      { label: "Lead time", value: "2 working days" },
+      { label: "Material", value: "FDM / CNC / Moulding Spec" },
+      { label: "Process", value: "3D CAD & Technical Engineering Drawings" },
     ],
   },
   {
@@ -92,10 +86,8 @@ export const products: Product[] = [
       "Working desktop prototype with a printed spur-gear train — built to demonstrate step-up gearing for an educational kit.",
     process: ["3D CAD", "Rapid Prototyping", "3D Printing"],
     specs: [
-      { label: "Material", value: "PLA + PETG gears" },
-      { label: "Mechanism", value: "Printed spur-gear train" },
-      { label: "Iterations", value: "3 prototype revisions" },
-      { label: "Lead time", value: "4 working days" },
+      { label: "Material", value: "PLA + PETG Gear Train" },
+      { label: "Process", value: "3D CAD, Rapid Prototyping & 3D Printing" },
     ],
   },
   {
@@ -109,10 +101,8 @@ export const products: Product[] = [
       "Chemical-resistant, narrow-spout funnel for engine oil and coolant top-ups — designed to print without supports.",
     process: ["3D CAD", "3D Printing"],
     specs: [
-      { label: "Material", value: "PETG — oil resistant" },
-      { label: "Design", value: "Support-free geometry" },
-      { label: "Batch", value: "Printed in runs of 20" },
-      { label: "Lead time", value: "2 working days" },
+      { label: "Material", value: "PETG (Chemical & Oil Resistant)" },
+      { label: "Process", value: "3D CAD Modeling & FDM Printing" },
     ],
   },
   {
@@ -126,10 +116,8 @@ export const products: Product[] = [
       "Angled, ribbed desk organiser with dedicated bays for pens, styluses and tools — designed for a clean print with no visible supports.",
     process: ["3D CAD", "3D Printing", "Post Processing"],
     specs: [
-      { label: "Material", value: "PLA — two-tone" },
-      { label: "Detailing", value: "Ribbed shell, fitted inserts" },
-      { label: "Batch", value: "Retail runs available" },
-      { label: "Lead time", value: "3 working days" },
+      { label: "Material", value: "PLA (Dual-Tone)" },
+      { label: "Process", value: "3D CAD Modeling, 3D Printing & Finishing" },
     ],
   },
   {
@@ -143,10 +131,8 @@ export const products: Product[] = [
       "Modern stand-off house numbers printed in weatherproof ASA, with hidden mounting pins for a crisp floating shadow.",
     process: ["3D CAD", "3D Printing", "Post Processing"],
     specs: [
-      { label: "Material", value: "ASA — weatherproof" },
-      { label: "Mounting", value: "Concealed stand-off pins" },
-      { label: "Sizes", value: "Custom height & font" },
-      { label: "Lead time", value: "3 working days" },
+      { label: "Material", value: "ASA (Weatherproof Outdoor)" },
+      { label: "Process", value: "3D CAD, 3D Printing & Post-Processing" },
     ],
   },
   {
@@ -160,10 +146,8 @@ export const products: Product[] = [
       "Pocket-sized case with snap-fit sliding lid, slots for SIM and memory cards, and an integrated ejector-tool holder.",
     process: ["3D CAD", "Rapid Prototyping", "3D Printing"],
     specs: [
-      { label: "Material", value: "PLA+ — high-vis orange" },
-      { label: "Closure", value: "Snap-fit sliding lid" },
-      { label: "Tolerance", value: "0.15 mm sliding clearance" },
-      { label: "Lead time", value: "2 working days" },
+      { label: "Material", value: "PLA+ Polymer" },
+      { label: "Process", value: "3D CAD Modeling & Rapid Prototyping" },
     ],
   },
   {
@@ -177,10 +161,8 @@ export const products: Product[] = [
       "Scale replica wheelie bin with a working hinged lid and rolling wheels — a desk bin, gift or promotional piece.",
     process: ["3D CAD", "3D Printing", "Post Processing"],
     specs: [
-      { label: "Material", value: "PLA — matte black" },
-      { label: "Moving parts", value: "Print-in-place hinge, wheels" },
-      { label: "Branding", value: "Custom logos available" },
-      { label: "Lead time", value: "3 working days" },
+      { label: "Material", value: "PLA (Matte Black)" },
+      { label: "Process", value: "3D CAD, 3D Printing & Assembly" },
     ],
   },
   {
@@ -194,10 +176,8 @@ export const products: Product[] = [
       "Layered relief flag with raised stars and stripes, finished by hand in primer, enamel colour and a protective clear coat.",
     process: ["3D CAD", "3D Printing", "Post Processing"],
     specs: [
-      { label: "Material", value: "PLA relief" },
-      { label: "Finish", value: "Hand-painted + clear coat" },
-      { label: "Sizes", value: "A5 – A3 panels" },
-      { label: "Lead time", value: "5 working days" },
+      { label: "Material", value: "PLA Relief Substrate" },
+      { label: "Process", value: "3D CAD, 3D Printing & Hand Finishing" },
     ],
   },
   {
@@ -211,10 +191,8 @@ export const products: Product[] = [
       "Two-tone embossed emblem traced from artwork and printed with multi-colour layering — ideal for badges, plaques and packaging.",
     process: ["3D CAD", "3D Printing"],
     specs: [
-      { label: "Material", value: "PLA — multi-colour" },
-      { label: "Detail", value: "0.12 mm layer height" },
-      { label: "Artwork", value: "Traced from your logo" },
-      { label: "Lead time", value: "2 working days" },
+      { label: "Material", value: "PLA (Multi-Colour)" },
+      { label: "Process", value: "Vector Tracing, 3D CAD & 3D Printing" },
     ],
   },
 ];
