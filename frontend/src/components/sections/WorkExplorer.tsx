@@ -15,13 +15,29 @@ import { cn } from "@/lib/cn";
 type Filter = (typeof productCategories)[number];
 
 export function WorkExplorer() {
+  const [productList, setProductList] = useState<Product[]>(products);
   const [filter, setFilter] = useState<Filter>("All");
   const [open, setOpen] = useState<{ index: number; dir: number } | null>(null);
   const { requestQuote } = useSite();
 
+  useEffect(() => {
+    let isMounted = true;
+    fetch("/api/products")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (isMounted && data?.products && Array.isArray(data.products) && data.products.length > 0) {
+          setProductList(data.products);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const visible = useMemo(
-    () => (filter === "All" ? products : products.filter((p) => p.category === filter)),
-    [filter]
+    () => (filter === "All" ? productList : productList.filter((p) => p.category === filter)),
+    [filter, productList]
   );
 
   const close = useCallback(() => setOpen(null), []);

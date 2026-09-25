@@ -1,49 +1,134 @@
 import { Product, CreateProductInput, UpdateProductInput } from '@/types/product';
 import { createClient } from '@supabase/supabase-js';
+import { Pool } from 'pg';
 
 const INITIAL_PRODUCTS: Product[] = [
   {
-    id: '11111111-1111-1111-1111-111111111111',
-    name: 'Titanium Aero Turbine Rotor Hub',
-    description: 'High-precision 5-axis CNC machined grade-5 titanium rotor hub engineered for high thermal tolerance and dynamic balance.',
-    price: 8450.00,
-    tags: ['Turbines', 'Titanium', 'Aerospace', 'CNC'],
-    imageUrls: [
-      'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
-    ],
-    createdAt: new Date(Date.now() - 10 * 86400000).toISOString(),
-    updatedAt: new Date(Date.now() - 10 * 86400000).toISOString(),
+    id: 'dr-p-011',
+    name: 'Triple Gauge Dash Pod',
+    description: 'Custom-fit dashboard pod housing three 52 mm gauges. Reverse engineered from the dash contour so it sits flush with factory panels.',
+    price: 45.00,
+    tags: ['Automotive', 'Reverse Engineering', '3D CAD', '3D Printing'],
+    imageUrls: ['/products/gauge-pod.jpg'],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
   },
   {
-    id: '22222222-2222-2222-2222-222222222222',
-    name: 'Carbon-Composite Winglet Spar',
-    description: 'Autoclave-cured high-modulus carbon fiber winglet structure reducing induced drag by up to 4.2% across subsonic flight profiles.',
-    price: 12900.00,
-    tags: ['Composites', 'Aerodynamics', 'Carbon Fiber'],
-    imageUrls: [
-      'https://images.unsplash.com/photo-1517976487502-5f7949442f3c?auto=format&fit=crop&w=800&q=80',
-    ],
-    createdAt: new Date(Date.now() - 8 * 86400000).toISOString(),
-    updatedAt: new Date(Date.now() - 8 * 86400000).toISOString(),
+    id: 'dr-p-027',
+    name: 'Cabinet Lock Drilling Jig',
+    description: 'Clamp-on jig that locates the lock barrel and cam holes for fast, repeatable cabinet lock installs — with hardened guide bushings.',
+    price: 35.00,
+    tags: ['Tooling', 'Jigs & Fixtures', '3D CAD', '3D Printing'],
+    imageUrls: ['/products/drawer-lock-jig.jpg'],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
   },
   {
-    id: '33333333-3333-3333-3333-333333333333',
-    name: 'Cryogenic Hydraulic Actuator Valve',
-    description: 'Hermetically sealed dual-redundant solenoid servo valve rated for extreme cryo operations down to -196°C.',
-    price: 3720.50,
-    tags: ['Hydraulics', 'Cryogenics', 'Actuators', 'Valves'],
-    imageUrls: [
-      'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80',
-    ],
-    createdAt: new Date(Date.now() - 5 * 86400000).toISOString(),
-    updatedAt: new Date(Date.now() - 5 * 86400000).toISOString(),
+    id: 'dr-p-042',
+    name: 'Pivot Mount Bracket (CAD)',
+    description: 'Parametric pivot bracket designed in CAD for CNC and additive production, with load simulation and lightweight internal webbing.',
+    price: 65.00,
+    tags: ['Tooling', '3D CAD', 'Parametric Design', 'Additive'],
+    imageUrls: ['/products/pivot-bracket-cad.jpg'],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
   },
+  {
+    id: 'dr-p-063',
+    name: 'Miniature Turbine & Gearbox',
+    description: 'High-speed demonstrator with geared planetary drive and turbine impeller — tight-tolerance snap-together assembly.',
+    price: 55.00,
+    tags: ['Prototypes', '3D CAD', 'Rapid Prototyping', 'Assemblies'],
+    imageUrls: ['/products/turbine-gearbox.jpg'],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: 'dr-p-089',
+    name: 'Workshop Spill Funnel',
+    description: 'Chemical-resistant funnel with air-bleed flutes, threaded filter seat and reinforced rim for high-volume shop use.',
+    price: 22.00,
+    tags: ['Tooling', 'Workshop Tools', '3D CAD', '3D Printing'],
+    imageUrls: ['/products/workshop-funnel.jpg'],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: 'dr-p-104',
+    name: 'Modular Desk Organiser',
+    description: 'Stackable desktop organisation system with magnetic docking channels, cable routing, and textured finish.',
+    price: 28.00,
+    tags: ['Home & Office', 'Consumer Goods', 'Design', '3D Printing'],
+    imageUrls: ['/products/desk-organiser.jpg'],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: 'dr-p-118',
+    name: 'Modern Floating House Number Sign',
+    description: 'Clean-edge architectural signage with hidden standoff fasteners, weather-sealed perimeter, and dual-tone infill.',
+    price: 38.00,
+    tags: ['Custom', 'Signage', 'Architectural', '3D Printing'],
+    imageUrls: ['/products/house-number-sign.jpg'],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: 'dr-p-135',
+    name: 'SIM Card & Pin Organiser',
+    description: 'Pocket-sized case with precision recesses for nano/micro SIMs, adapters, and ejection pins with positive magnetic snap latch.',
+    price: 18.00,
+    tags: ['Home & Office', 'Electronics Accessories', 'Snap-Fit'],
+    imageUrls: ['/products/sim-card-organiser.jpg'],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: 'dr-p-152',
+    name: 'Desk Mini Wheelie Bin',
+    description: 'Functional desktop desk tidy with working axle, flip lid, and scale ribbed panels — scaled from commercial wheelie bins.',
+    price: 20.00,
+    tags: ['Home & Office', 'Novelty & Utility', 'Functional Assembly'],
+    imageUrls: ['/products/mini-wheelie-bin.jpg'],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: 'dr-p-171',
+    name: 'Relief American Flag Plaque',
+    description: 'High-detail multi-depth relief flag with precision star field, raised stripes, and seamless multi-filament bonding.',
+    price: 42.00,
+    tags: ['Custom', 'Relief Plaques', 'Multi-Color Printing'],
+    imageUrls: ['/products/flag-relief.jpg'],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: 'dr-p-189',
+    name: 'Transformers Autobot Shield',
+    description: 'Multi-depth metallic silver and black emblem with crisp edge definition, chamfered facets, and concealed wall mount recesses.',
+    price: 35.00,
+    tags: ['Custom', 'Emblems & Props', 'Post-Processing'],
+    imageUrls: ['/products/relief-emblem.jpg'],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: 'dr-p-200',
+    name: 'DR Engineering Workshop Showcase',
+    description: 'Physical workshop showcase featuring precision pivot brackets, functional drill jigs, multi-stage gear trains, and custom relief emblems.',
+    price: 85.00,
+    tags: ['Showcase', 'Assemblies', '3D CAD', '3D Printing'],
+    imageUrls: ['/products/dr-showcase-hero.jpg'],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  }
 ];
 
-// Persistent memory cache across hot-reloads in Node runtime
+// Persistent memory cache across hot-reloads
 const globalForProducts = globalThis as unknown as {
   __productsCache?: Product[];
+  __pgPool?: Pool;
 };
 
 function getMemoryStore(): Product[] {
@@ -51,6 +136,21 @@ function getMemoryStore(): Product[] {
     globalForProducts.__productsCache = [...INITIAL_PRODUCTS];
   }
   return globalForProducts.__productsCache;
+}
+
+function getPgPool(): Pool | null {
+  const conn = process.env.DIRECT_URL || process.env.DATABASE_URL;
+  if (!conn) return null;
+
+  if (!globalForProducts.__pgPool) {
+    globalForProducts.__pgPool = new Pool({
+      connectionString: conn,
+      ssl: { rejectUnauthorized: false },
+      max: 5,
+      idleTimeoutMillis: 30000,
+    });
+  }
+  return globalForProducts.__pgPool;
 }
 
 function getSupabaseServerClient() {
@@ -68,10 +168,40 @@ function getSupabaseServerClient() {
   return null;
 }
 
-
 export async function getAllProducts(params?: { tag?: string; search?: string }): Promise<Product[]> {
-  const supabase = getSupabaseServerClient();
+  const pool = getPgPool();
+  if (pool) {
+    try {
+      let query = 'SELECT * FROM products ORDER BY created_at DESC';
+      const values: unknown[] = [];
 
+      if (params?.tag) {
+        query = 'SELECT * FROM products WHERE $1 = ANY(tags) ORDER BY created_at DESC';
+        values.push(params.tag.trim());
+      } else if (params?.search) {
+        query = 'SELECT * FROM products WHERE name ILIKE $1 OR description ILIKE $1 ORDER BY created_at DESC';
+        values.push(`%${params.search.trim()}%`);
+      }
+
+      const res = await pool.query(query, values);
+      if (res.rows.length > 0) {
+        return res.rows.map((row) => ({
+          id: row.id,
+          name: row.name,
+          description: row.description || '',
+          price: Number(row.price),
+          imageUrls: row.image_urls || [],
+          tags: row.tags || [],
+          createdAt: row.created_at ? new Date(row.created_at).toISOString() : new Date().toISOString(),
+          updatedAt: row.updated_at ? new Date(row.updated_at).toISOString() : new Date().toISOString(),
+        }));
+      }
+    } catch (err) {
+      console.warn('Postgres direct query failed, trying Supabase REST:', err);
+    }
+  }
+
+  const supabase = getSupabaseServerClient();
   if (supabase) {
     try {
       let query = supabase.from('products').select('*').order('created_at', { ascending: false });
@@ -85,7 +215,7 @@ export async function getAllProducts(params?: { tag?: string; search?: string })
       }
 
       const { data, error } = await query;
-      if (!error && data) {
+      if (!error && data && data.length > 0) {
         return data.map((item) => ({
           id: item.id,
           name: item.name,
@@ -102,30 +232,48 @@ export async function getAllProducts(params?: { tag?: string; search?: string })
     }
   }
 
-  // Local memory store
+  // Local fallback
   let list = getMemoryStore();
-
   if (params?.tag) {
     const t = params.tag.toLowerCase().trim();
     list = list.filter((p) => p.tags.some((tag) => tag.toLowerCase() === t));
   }
-
   if (params?.search) {
     const s = params.search.toLowerCase().trim();
     list = list.filter(
       (p) =>
         p.name.toLowerCase().includes(s) ||
         p.description.toLowerCase().includes(s) ||
-        p.tags.some((tag) => tag.toLowerCase().includes(s))
+        p.tags.some((tag) => tag.toLowerCase() === s)
     );
   }
-
   return list;
 }
 
 export async function getProductById(id: string): Promise<Product | null> {
-  const supabase = getSupabaseServerClient();
+  const pool = getPgPool();
+  if (pool) {
+    try {
+      const res = await pool.query('SELECT * FROM products WHERE id = $1 LIMIT 1', [id]);
+      if (res.rows.length > 0) {
+        const row = res.rows[0];
+        return {
+          id: row.id,
+          name: row.name,
+          description: row.description || '',
+          price: Number(row.price),
+          imageUrls: row.image_urls || [],
+          tags: row.tags || [],
+          createdAt: row.created_at ? new Date(row.created_at).toISOString() : new Date().toISOString(),
+          updatedAt: row.updated_at ? new Date(row.updated_at).toISOString() : new Date().toISOString(),
+        };
+      }
+    } catch {
+      // Fallback
+    }
+  }
 
+  const supabase = getSupabaseServerClient();
   if (supabase) {
     try {
       const { data, error } = await supabase.from('products').select('*').eq('id', id).maybeSingle();
@@ -164,6 +312,29 @@ export async function createProduct(input: CreateProductInput): Promise<Product>
     createdAt: now,
     updatedAt: now,
   };
+
+  const pool = getPgPool();
+  if (pool) {
+    try {
+      await pool.query(
+        `INSERT INTO products (id, name, description, price, image_urls, tags, created_at, updated_at)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+        [
+          newProduct.id,
+          newProduct.name,
+          newProduct.description,
+          newProduct.price,
+          newProduct.imageUrls,
+          newProduct.tags,
+          new Date(newProduct.createdAt),
+          new Date(newProduct.updatedAt),
+        ]
+      );
+      return newProduct;
+    } catch (err) {
+      console.warn('Postgres insert failed, attempting Supabase fallback:', err);
+    }
+  }
 
   const supabase = getSupabaseServerClient();
   if (supabase) {
@@ -207,6 +378,42 @@ export async function createProduct(input: CreateProductInput): Promise<Product>
 
 export async function updateProduct(id: string, input: UpdateProductInput): Promise<Product | null> {
   const now = new Date().toISOString();
+
+  const pool = getPgPool();
+  if (pool) {
+    try {
+      const res = await pool.query(
+        `UPDATE products
+         SET name = $1, description = $2, price = $3, image_urls = $4, tags = $5, updated_at = $6
+         WHERE id = $7
+         RETURNING *`,
+        [
+          input.name.trim(),
+          (input.description || '').trim(),
+          Number(input.price),
+          (input.imageUrls || []).filter(Boolean),
+          (input.tags || []).filter(Boolean),
+          new Date(now),
+          id,
+        ]
+      );
+      if (res.rows.length > 0) {
+        const row = res.rows[0];
+        return {
+          id: row.id,
+          name: row.name,
+          description: row.description,
+          price: Number(row.price),
+          imageUrls: row.image_urls,
+          tags: row.tags,
+          createdAt: row.created_at ? new Date(row.created_at).toISOString() : now,
+          updatedAt: row.updated_at ? new Date(row.updated_at).toISOString() : now,
+        };
+      }
+    } catch (err) {
+      console.warn('Postgres update failed, attempting Supabase fallback:', err);
+    }
+  }
 
   const supabase = getSupabaseServerClient();
   if (supabase) {
@@ -262,6 +469,16 @@ export async function updateProduct(id: string, input: UpdateProductInput): Prom
 }
 
 export async function deleteProduct(id: string): Promise<boolean> {
+  const pool = getPgPool();
+  if (pool) {
+    try {
+      const res = await pool.query('DELETE FROM products WHERE id = $1', [id]);
+      if ((res.rowCount ?? 0) > 0) return true;
+    } catch (err) {
+      console.warn('Postgres delete failed, attempting Supabase fallback:', err);
+    }
+  }
+
   const supabase = getSupabaseServerClient();
   if (supabase) {
     try {

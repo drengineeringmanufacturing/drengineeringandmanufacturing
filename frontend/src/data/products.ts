@@ -11,13 +11,16 @@ export interface Product {
   title: string;
   category: ProductCategory;
   image: string;
+  imageUrls?: string[];
   /** CSS object-position for the grid thumbnail */
   focus?: string;
   /** Show the image contained (no crop) — for renders on white */
   contain?: boolean;
   summary: string;
+  price?: number;
+  tags?: string[];
   process: string[];
-  specs: { label: string; value: string }[];
+  specs?: { label: string; value: string }[];
 }
 
 export const productCategories: ("All" | ProductCategory)[] = [

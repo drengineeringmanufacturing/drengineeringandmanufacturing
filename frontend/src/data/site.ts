@@ -45,7 +45,8 @@ export const site = {
 
 export const navLinks = [
   { id: "capabilities", label: "Capabilities", href: "/#capabilities" },
-  { id: "work", label: "Work", href: "/#work" },
+  { id: "work", label: "Recent Builds", href: "/#work" },
+  { id: "products", label: "Products", href: "/products" },
   { id: "process", label: "Process", href: "/#process" },
   { id: "materials", label: "Materials", href: "/#materials" },
   { id: "about", label: "About Us", href: "/about" },
