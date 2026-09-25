@@ -9,6 +9,8 @@ import { useSite } from "@/components/SiteProvider";
 import { productCategories, Product, ProductCategory } from "@/data/products";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
+import { getCatalogProducts } from "@/lib/products-api";
+
 interface Props {
   initialProducts: Product[];
 }
@@ -20,17 +22,14 @@ export function ProductCatalogClient({ initialProducts }: Props) {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { requestQuote } = useSite();
 
-  // Fetch live products
+  // Fetch live products from Superadmin API
   useEffect(() => {
     let isMounted = true;
-    fetch("/api/products")
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (isMounted && data?.products && Array.isArray(data.products) && data.products.length > 0) {
-          setProductsList(data.products);
-        }
-      })
-      .catch(() => {});
+    getCatalogProducts().then((items) => {
+      if (isMounted && items && items.length > 0) {
+        setProductsList(items);
+      }
+    });
     return () => {
       isMounted = false;
     };

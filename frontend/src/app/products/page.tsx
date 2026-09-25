@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SiteProvider } from "@/components/SiteProvider";
-import { fetchLiveProducts } from "@/lib/db-products";
+import { getCatalogProducts } from "@/lib/products-api";
 import { ProductCatalogClient } from "./ProductCatalogClient";
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export const revalidate = 0;
 
 export default async function ProductsPage() {
-  const products = await fetchLiveProducts();
+  const products = await getCatalogProducts();
 
   return (
     <SiteProvider>

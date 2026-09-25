@@ -12,6 +12,8 @@ import { TiltCard } from "@/components/ui/TiltCard";
 import { productCategories, products, type Product } from "@/data/products";
 import { cn } from "@/lib/cn";
 
+import { getCatalogProducts } from "@/lib/products-api";
+
 type Filter = (typeof productCategories)[number];
 
 export function WorkExplorer() {
@@ -22,14 +24,11 @@ export function WorkExplorer() {
 
   useEffect(() => {
     let isMounted = true;
-    fetch("/api/products")
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (isMounted && data?.products && Array.isArray(data.products) && data.products.length > 0) {
-          setProductList(data.products);
-        }
-      })
-      .catch(() => {});
+    getCatalogProducts().then((items) => {
+      if (isMounted && items && items.length > 0) {
+        setProductList(items);
+      }
+    });
     return () => {
       isMounted = false;
     };
