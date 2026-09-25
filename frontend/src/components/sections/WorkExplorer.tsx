@@ -17,7 +17,8 @@ import { getCatalogProducts } from "@/lib/products-api";
 type Filter = (typeof productCategories)[number];
 
 export function WorkExplorer() {
-  const [productList, setProductList] = useState<Product[]>(products);
+  const [productList, setProductList] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<Filter>("All");
   const [open, setOpen] = useState<{ index: number; dir: number } | null>(null);
   const { requestQuote } = useSite();
@@ -25,8 +26,9 @@ export function WorkExplorer() {
   useEffect(() => {
     let isMounted = true;
     getCatalogProducts().then((items) => {
-      if (isMounted && items && items.length > 0) {
-        setProductList(items);
+      if (isMounted) {
+        setProductList(items || []);
+        setLoading(false);
       }
     });
     return () => {
@@ -152,26 +154,44 @@ export function WorkExplorer() {
           </div>
         </div>
 
-        <motion.div layout className="mt-14 grid auto-rows-[300px] grid-flow-dense gap-4 sm:grid-cols-2 lg:auto-rows-[280px] lg:grid-cols-3 xl:grid-cols-4">
-          <AnimatePresence mode="popLayout">
-            {visible.map((p, i) => {
-              const featured = filter === "All" && i === 0;
-              return (
-                <motion.div
-                  key={p.id}
-                  layout
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.92, transition: { duration: 0.2 } }}
-                  transition={{ type: "spring", stiffness: 150, damping: 22, delay: Math.min(i, 8) * 0.04 }}
-                  className={cn(featured && "sm:col-span-2 sm:row-span-2")}
-                >
-                  <WorkCard product={p} featured={featured} onOpen={() => setOpen({ index: i, dir: 0 })} />
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </motion.div>
+        {loading && productList.length === 0 ? (
+          <div className="mt-14 grid auto-rows-[300px] grid-flow-dense gap-4 sm:grid-cols-2 lg:auto-rows-[280px] lg:grid-cols-3 xl:grid-cols-4">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div
+                key={i}
+                className={cn(
+                  "animate-pulse rounded-3xl border border-slate-200 bg-slate-100",
+                  i === 0 && "sm:col-span-2 sm:row-span-2"
+                )}
+              />
+            ))}
+          </div>
+        ) : visible.length === 0 ? (
+          <div className="mt-14 rounded-3xl border border-dashed border-slate-300 bg-white p-12 text-center">
+            <p className="text-sm font-medium text-slate-500">No products found in this category.</p>
+          </div>
+        ) : (
+          <motion.div layout className="mt-14 grid auto-rows-[300px] grid-flow-dense gap-4 sm:grid-cols-2 lg:auto-rows-[280px] lg:grid-cols-3 xl:grid-cols-4">
+            <AnimatePresence mode="popLayout">
+              {visible.map((p, i) => {
+                const featured = filter === "All" && i === 0;
+                return (
+                  <motion.div
+                    key={p.id}
+                    layout
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.92, transition: { duration: 0.2 } }}
+                    transition={{ type: "spring", stiffness: 150, damping: 22, delay: Math.min(i, 8) * 0.04 }}
+                    className={cn(featured && "sm:col-span-2 sm:row-span-2")}
+                  >
+                    <WorkCard product={p} featured={featured} onOpen={() => setOpen({ index: i, dir: 0 })} />
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </motion.div>
+        )}
       </div>
 
       <Modal open={!!current} onClose={close} tone="light" labelledBy="work-modal-title" className="sm:max-w-6xl">

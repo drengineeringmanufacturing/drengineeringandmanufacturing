@@ -1,10 +1,12 @@
 import { Product, ProductCategory, products as fallbackProducts } from '@/data/products';
 
-const API_BASE =
+const rawUrl =
   process.env.NEXT_PUBLIC_API_URL ||
   (process.env.NEXT_PUBLIC_SUPERADMIN_URL
     ? `${process.env.NEXT_PUBLIC_SUPERADMIN_URL}/api`
-    : 'http://localhost:3001/api');
+    : 'https://drengineeringandmanufacturing-rq2d.vercel.app/api');
+
+const API_BASE = rawUrl.replace(/\/+$/, '');
 
 function mapCategory(tags: string[] = []): ProductCategory {
   const lower = tags.map((t) => t.toLowerCase());
