@@ -69,9 +69,9 @@ export function Contact() {
             viewport={{ once: true }}
             className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.28em] text-white/80"
           >
-            <span className="rounded border border-white/30 bg-white/10 px-1.5 py-0.5">06</span>
+            <span className="rounded border border-white/30 bg-white/10 px-1.5 py-0.5">05</span>
             <span className="h-px w-8 bg-white/40" />
-            Start a project
+            Contact Us &amp; Start a project
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 24 }}
@@ -114,15 +114,38 @@ export function Contact() {
             ))}
           </ul>
 
-          {contactItems.length > 0 && (
-            <div className="mt-8 flex flex-wrap gap-3">
-              {contactItems.map((c) => (
-                <a key={c.label} href={c.href} className="flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm text-white">
-                  <c.icon className="h-4 w-4" /> {c.value}
-                </a>
-              ))}
-            </div>
-          )}
+          <div className="mt-8 flex flex-wrap gap-2.5">
+            <a
+              href={`mailto:${site.contact.email}`}
+              className="flex items-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-medium text-white hover:bg-white/20 transition-colors"
+            >
+              <Mail className="h-3.5 w-3.5" /> {site.contact.email}
+            </a>
+            {site.contact.infoEmail && (
+              <a
+                href={`mailto:${site.contact.infoEmail}`}
+                className="flex items-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-medium text-white hover:bg-white/20 transition-colors"
+              >
+                <Mail className="h-3.5 w-3.5" /> {site.contact.infoEmail}
+              </a>
+            )}
+            <a
+              href={site.socials.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-medium text-white hover:bg-white/20 transition-colors"
+            >
+              LinkedIn
+            </a>
+            <a
+              href={site.socials.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-medium text-white hover:bg-white/20 transition-colors"
+            >
+              Instagram (@drengineeringandmanufacturing)
+            </a>
+          </div>
         </div>
 
         <motion.div

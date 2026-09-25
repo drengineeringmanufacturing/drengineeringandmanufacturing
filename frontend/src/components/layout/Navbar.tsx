@@ -71,7 +71,7 @@ export function Navbar() {
               : "border-white/[0.06] bg-obsidian/30 backdrop-blur-md"
           )}
         >
-          <a href="#top" className="group flex items-center gap-3" aria-label={`${site.name} — home`}>
+          <a href="/#top" className="group flex items-center gap-3" aria-label={`${site.name} — home`}>
             <span className="relative grid h-10 w-10 place-items-center">
               <motion.span
                 aria-hidden
@@ -95,7 +95,7 @@ export function Navbar() {
               return (
                 <li key={l.id}>
                   <a
-                    href={`#${l.id}`}
+                    href={l.href}
                     className={cn(
                       "relative block px-3.5 py-2 text-sm font-medium transition-colors",
                       on ? "text-white" : "text-slate-steel hover:text-white"
@@ -117,7 +117,7 @@ export function Navbar() {
 
           <div className="flex items-center gap-2">
             <div className="hidden sm:block">
-              <MagneticButton href="#contact" className="px-5 py-2.5">
+              <MagneticButton href="/contact" className="px-5 py-2.5">
                 Start a Project <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </MagneticButton>
             </div>
@@ -167,26 +167,31 @@ export function Navbar() {
               variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06, delayChildren: 0.1 } } }}
               className="relative flex h-full flex-col justify-center gap-2 px-6"
             >
-              {[...navLinks, { id: "contact" as const, label: "Contact" }].map((l, i) => (
+              {navLinks.map((l, i) => (
                 <motion.li
                   key={l.id}
                   variants={{ hidden: { opacity: 0, x: -30 }, show: { opacity: 1, x: 0 } }}
                   transition={{ type: "spring", stiffness: 200, damping: 22 }}
                 >
                   <a
-                    href={`#${l.id}`}
+                    href={l.href}
                     onClick={() => setOpen(false)}
-                    className="flex items-baseline gap-4 border-b border-white/[0.06] py-4 font-display text-3xl font-semibold text-white"
+                    className="flex items-baseline gap-4 border-b border-white/[0.06] py-3.5 font-display text-2xl font-semibold text-white"
                   >
                     <span className="font-mono text-xs text-ping">{String(i + 1).padStart(2, "0")}</span>
                     {l.label}
                   </a>
                 </motion.li>
               ))}
-              <motion.li variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }} className="mt-8">
-                <MagneticButton href="#contact" onClick={() => setOpen(false)}>
+              <motion.li variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }} className="mt-6 flex flex-col gap-3">
+                <MagneticButton href="/contact" onClick={() => setOpen(false)}>
                   Start a Project <ArrowRight className="h-4 w-4" />
                 </MagneticButton>
+                <div className="flex items-center justify-center gap-6 pt-2 text-slate-steel text-sm">
+                  <a href={site.socials.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-ping">LinkedIn</a>
+                  <span>·</span>
+                  <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-ping">Instagram</a>
+                </div>
               </motion.li>
             </motion.ul>
           </motion.div>

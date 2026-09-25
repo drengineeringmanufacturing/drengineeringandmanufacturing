@@ -32,10 +32,35 @@ export function Footer() {
             </p>
           </div>
 
-          <FooterCol title="Capabilities" items={services.map((s) => ({ label: s.title, href: "#capabilities" }))} />
+          <FooterCol title="Capabilities" items={services.map((s) => ({ label: s.title, href: "/#capabilities" }))} />
           <FooterCol
             title="Company"
-            items={[...navLinks.map((l) => ({ label: l.label, href: `#${l.id}` })), { label: "Start a project", href: "#contact" }]}
+            items={[
+              { label: "Contact Us", href: "/contact" },
+              { label: "About Us", href: "/about" },
+              { label: "Capabilities", href: "/#capabilities" },
+              { label: "Work", href: "/#work" },
+              { label: "Process", href: "/#process" },
+              { label: "Materials", href: "/#materials" },
+              { label: "Start a project", href: "/contact" },
+            ]}
+          />
+          <FooterCol
+            title="Social Media"
+            items={[
+              {
+                label: "LinkedIn",
+                href: site.socials.linkedin,
+                external: true,
+                icon: <LinkedinIcon className="h-4 w-4" />,
+              },
+              {
+                label: "Instagram",
+                href: site.socials.instagram,
+                external: true,
+                icon: <InstagramIcon className="h-4 w-4" />,
+              },
+            ]}
           />
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-ping">Accepted formats</p>
@@ -46,11 +71,16 @@ export function Footer() {
                 </span>
               ))}
             </div>
-            {site.contact.email && (
-              <a href={`mailto:${site.contact.email}`} className="mt-6 block text-sm text-white hover:text-ping">
+            <div className="mt-6 space-y-1.5">
+              <a href={`mailto:${site.contact.email}`} className="block text-sm text-white hover:text-ping transition-colors">
                 {site.contact.email}
               </a>
-            )}
+              {site.contact.infoEmail && (
+                <a href={`mailto:${site.contact.infoEmail}`} className="block text-xs text-slate-steel hover:text-ping transition-colors">
+                  {site.contact.infoEmail}
+                </a>
+              )}
+            </div>
           </div>
         </div>
 
@@ -70,7 +100,27 @@ export function Footer() {
           <p>
             © {year} {site.name}. All rights reserved.
           </p>
-          <p className="font-mono uppercase tracking-[0.2em]">Designed · Engineered · Manufactured</p>
+          <div className="flex items-center gap-4">
+            <a
+              href={site.socials.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="DR Engineering on LinkedIn"
+              className="text-slate-steel transition-colors hover:text-ping"
+            >
+              <LinkedinIcon className="h-4 w-4" />
+            </a>
+            <a
+              href={site.socials.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="DR Engineering on Instagram"
+              className="text-slate-steel transition-colors hover:text-ping"
+            >
+              <InstagramIcon className="h-4 w-4" />
+            </a>
+            <span className="font-mono uppercase tracking-[0.2em]">Designed · Engineered · Manufactured</span>
+          </div>
           <a
             href="#top"
             className="group inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 text-silver transition-colors hover:border-ping/50 hover:text-white"
@@ -83,15 +133,30 @@ export function Footer() {
   );
 }
 
-function FooterCol({ title, items }: { title: string; items: { label: string; href: string }[] }) {
+function FooterCol({
+  title,
+  items,
+}: {
+  title: string;
+  items: { label: string; href: string; external?: boolean; icon?: React.ReactNode }[];
+}) {
   return (
     <div>
       <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-ping">{title}</p>
       <ul className="mt-5 space-y-2.5">
         {items.map((it) => (
           <li key={it.label}>
-            <a href={it.href} className="group inline-flex items-center text-sm text-slate-steel transition-colors hover:text-white">
-              <span className="h-px w-0 bg-ping transition-all duration-300 group-hover:mr-2 group-hover:w-3" />
+            <a
+              href={it.href}
+              target={it.external ? "_blank" : undefined}
+              rel={it.external ? "noopener noreferrer" : undefined}
+              className="group inline-flex items-center gap-2 text-sm text-slate-steel transition-colors hover:text-white"
+            >
+              {it.icon ? (
+                <span className="text-slate-steel transition-colors group-hover:text-ping">{it.icon}</span>
+              ) : (
+                <span className="h-px w-0 bg-ping transition-all duration-300 group-hover:mr-2 group-hover:w-3" />
+              )}
               {it.label}
             </a>
           </li>
@@ -100,3 +165,24 @@ function FooterCol({ title, items }: { title: string; items: { label: string; hr
     </div>
   );
 }
+
+function InstagramIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  );
+}
+
+function LinkedinIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect width="4" height="12" x="2" y="9" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  );
+}
+
