@@ -57,7 +57,7 @@ export function WorkExplorer() {
                 Parts that leave the screen <span className="text-aero">and work in the real world.</span>
               </>
             }
-            description="A cross-section of recent builds — automotive fitments, shop tooling, prototypes and custom pieces. Open any part for its build sheet."
+            description="A cross-section of recent builds — automotive fitments, shop tooling, prototypes and custom pieces. Click any build to inspect details."
           />
 
           {/* Main Showcase Introduction Card */}
@@ -301,16 +301,6 @@ function WorkDetail({ product, dir, position, onPrev, onNext, onQuote }: WorkDet
             {product.title}
           </h3>
           <p className="mt-4 leading-relaxed text-slate-600">{product.summary}</p>
-
-          <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.24em] text-aero">Build sheet</p>
-          <dl className="mt-3 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-slate-200 bg-slate-200">
-            {product.specs.map((s) => (
-              <div key={s.label} className="bg-white px-4 py-3.5">
-                <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">{s.label}</dt>
-                <dd className="mt-1 text-sm font-medium text-navy-950">{s.value}</dd>
-              </div>
-            ))}
-          </dl>
 
           <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.24em] text-aero">Process chain</p>
           <ol className="mt-3 flex flex-wrap items-center gap-1.5">
