@@ -4,6 +4,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Capabilities } from "@/components/sections/Capabilities";
 import { Contact } from "@/components/sections/Contact";
 import { Hero } from "@/components/sections/Hero";
+import { LocationsSection } from "@/components/sections/LocationsSection";
 import { Materials } from "@/components/sections/Materials";
 import { Process } from "@/components/sections/Process";
 import { StatsBand } from "@/components/sections/StatsBand";
@@ -21,6 +22,7 @@ export default function Home() {
         <WorkExplorer />
         <Process />
         <Materials />
+        <LocationsSection />
         <Contact />
       </main>
       <Footer />

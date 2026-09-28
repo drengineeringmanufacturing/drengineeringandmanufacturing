@@ -12,7 +12,11 @@ export const site = {
     email: "danial@drengineeringandmanufacturing.com",
     infoEmail: "info@drengineeringandmanufacturing.com",
     phone: "",
-    location: "United Kingdom",
+    location: "Dallas, Texas (USA) & Preston, UK",
+    locationsList: [
+      { name: "Dallas, Texas", country: "United States", flag: "🇺🇸" },
+      { name: "Preston, Lancashire", country: "United Kingdom", flag: "🇬🇧" },
+    ],
   },
   socials: {
     linkedin: "https://www.linkedin.com/company/dr-engineering-manufacturing/",
@@ -21,7 +25,7 @@ export const site = {
   aboutStory: {
     title: "About DR Engineering & Manufacturing",
     founder: "Danial Raja",
-    lead: "A family-owned British engineering company founded on innovation, precision, and efficiency.",
+    lead: "A family-owned engineering company founded on innovation, precision, and efficiency.",
     paragraphs: [
       "DR Engineering & Manufacturing is a family owned company started with many dreams, inspirations, and motivations. With the world facing shortage in jobs and businesses facing rise in operational costs, Danial Raja the founder of DR Engineering & Manufacturing saw a vision that can help solve both of those issues so DR Engineering & Manufacturing was founded.",
       "Danial is very keen to bring his engineering background full of qualifications and experiences which will be used in DR Engineering & Manufacturing to bring value. At DR Engineering & Manufacturing we prioritise product quality and utmost customer satisfaction by reducing waste and lowered business operation costs.",
@@ -49,6 +53,7 @@ export const navLinks = [
   { id: "products", label: "Products", href: "/products" },
   { id: "process", label: "Process", href: "/#process" },
   { id: "materials", label: "Materials", href: "/#materials" },
+  { id: "locations", label: "Locations", href: "/locations" },
   { id: "about", label: "About Us", href: "/about" },
   { id: "contact", label: "Contact Us", href: "/contact" },
 ] as const;

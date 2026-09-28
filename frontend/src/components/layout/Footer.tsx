@@ -30,6 +30,36 @@ export function Footer() {
             <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-silver">
               <PulseDot color="signal" /> Accepting new projects
             </p>
+
+            {/* Global Facilities Quick Links */}
+            <div className="mt-6 max-w-sm rounded-2xl border border-white/10 bg-white/[0.03] p-3.5 backdrop-blur-md">
+              <div className="flex items-center justify-between">
+                <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-ping">Global Facilities</p>
+                <a href="/locations" className="font-mono text-[10px] text-slate-400 hover:text-ping transition-colors">
+                  View Map →
+                </a>
+              </div>
+              <div className="mt-2.5 space-y-1.5">
+                <a
+                  href="/locations"
+                  className="group flex items-center justify-between rounded-lg border border-white/[0.06] bg-navy-950/40 px-2.5 py-1.5 text-xs text-silver hover:border-ping/40 hover:bg-white/[0.06] transition-all"
+                >
+                  <span className="flex items-center gap-2 font-medium text-white group-hover:text-ping transition-colors">
+                    <span>🇺🇸</span> Dallas, Texas
+                  </span>
+                  <span className="font-mono text-[10px] text-slate-400">North America Hub</span>
+                </a>
+                <a
+                  href="/locations"
+                  className="group flex items-center justify-between rounded-lg border border-white/[0.06] bg-navy-950/40 px-2.5 py-1.5 text-xs text-silver hover:border-ping/40 hover:bg-white/[0.06] transition-all"
+                >
+                  <span className="flex items-center gap-2 font-medium text-white group-hover:text-ping transition-colors">
+                    <span>🇬🇧</span> Preston, UK
+                  </span>
+                  <span className="font-mono text-[10px] text-slate-400">Global HQ &amp; Plant</span>
+                </a>
+              </div>
+            </div>
           </div>
 
           <FooterCol title="Capabilities" items={services.map((s) => ({ label: s.title, href: "/#capabilities" }))} />
@@ -38,6 +68,7 @@ export function Footer() {
             items={[
               { label: "Contact Us", href: "/contact" },
               { label: "About Us", href: "/about" },
+              { label: "Locations", href: "/locations" },
               { label: "Capabilities", href: "/#capabilities" },
               { label: "Work", href: "/#work" },
               { label: "Process", href: "/#process" },
